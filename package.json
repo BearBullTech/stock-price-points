@@ -15,7 +15,9 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
+    "faker": "^4.1.0",
     "mongoose": "^5.2.13",
+    "morgan": "^1.9.0",
     "path": "^0.12.7",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -33,7 +35,6 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "morgan": "^1.9.0",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.7"
   }
