@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const logger = require('morgan');
+const logger = require('morgan');
 const database = require('../database/index.js');
 
 const app = express();
@@ -8,15 +8,14 @@ const app = express();
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(logger('dev'));
+app.use(logger('dev'));
 
 app.get('/data', (req, res) => {
   database.Company.find({}).find((err, result) => {
     if (err) {
-      console.log('CALLBACK ERROR!');
-    } else {
-      res.send(result);
+      return console.log('CALLBACK ERROR!');
     }
+    res.json(result);
   });
 });
 
