@@ -13,7 +13,7 @@ function stocksPurchased(startingVal, weekAverage) {
   let returnVal;
   if (percentageChange(startingVal, weekAverage) < 4
         && percentageChange(startingVal, weekAverage) > -4) {
-    returnVal = Math.floor(getRandomValue(850, getRandomValue(1250, 2300)));
+    returnVal = Math.floor(getRandomValue(550, getRandomValue(1250, 2300)));
     // HIGH PRICE
   } if (percentageChange(startingVal, weekAverage) > 4) {
     returnVal = Math.floor(getRandomValue(70, getRandomValue(150, 450)));
@@ -66,7 +66,7 @@ function testCompany(x) {
     const startingVal = getRandomValue(9, getRandomValue(70, 780));
     const companyObj = {
       company: companyName,
-      weeks: xWeeks(52, startingVal),
+      weeks: xWeeks(30, startingVal),
       yearly: {
         stocksPurchasedYear: totalStocksPurchased,
         yearHighest: Math.max.apply(null, weeklyValues),
