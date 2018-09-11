@@ -1,13 +1,13 @@
 # Project Name
 
-> Project description
+> Hackin Robinhood by Robin Hackers
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/RobinHackers/stock_fluctuation
+  - https://github.com/RobinHackers/stock-price-points
+  - https://github.com/RobinHackers/side-nav-bar
+  - https://github.com/RobinHackers/people-also-bought
 
 ## Table of Contents
 
@@ -27,6 +27,8 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 - etc
 
 ## Development
+
+Refer to engineeringJournal.md for additional notes during development.
 
 ### Installing Dependencies
 

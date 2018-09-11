@@ -11,15 +11,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger('dev'));
 
 app.get('/data', (req, res) => {
-  database.Company.find({}).find((err, result) => {
+  database.Company.find({ company: 'Trantow - Zieme' }).find((err, result) => {
     if (err) {
       return console.log('CALLBACK ERROR!');
     }
-    res.json(result);
+    return res.json(result);
   });
 });
 
-const PORT = 3000 || process.env.PORT;
+const PORT = 3002 || process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
 });

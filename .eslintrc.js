@@ -12,8 +12,11 @@ module.exports = {
     "node": true
   },
   rules: {
-    "no-console": 0
-  }
+    "no-console": 0,
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };
 
 // module.exports = {
