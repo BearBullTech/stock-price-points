@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Bar from './Bar.jsx';
 import Chart from './Chart.jsx';
 
@@ -16,11 +17,14 @@ const BarChart = ({ weeklyData }) => {
   }, 0);
 
   // Reshape the data to the 96px-max-height proportions
-  let resizedData = weeklyData.map(
-    week => Object.assign({}, week, { weekStocksPurchased: week.weekStocksPurchased / (mostStocks / 96)}),
+  const resizedData = weeklyData.map(
+    week => Object.assign(
+      {},
+      week,
+      { weekStocksPurchased: week.weekStocksPurchased / (mostStocks / 96) },
+    ),
   );
 
-  // once data is reshaped –– find the highest stock
   mostStocks = resizedData.reduce((acc, cur) => {
     const { weekStocksPurchased } = cur;
     return weekStocksPurchased > acc ? weekStocksPurchased : acc;
@@ -30,23 +34,27 @@ const BarChart = ({ weeklyData }) => {
 
   return (
     <Chart
-    width={dataLength * (itemWidth + itemMargin)}
-    height={chartHeight}
-  >
-    {resizedData.map((week, index) => {
-      const itemHeight = week.weekStocksPurchased;
-      return (
-        <Bar
-          key={index}
-          x={index * (itemWidth + itemMargin)}
-          y={chartHeight - itemHeight}
-          width={itemWidth}
-          height={itemHeight}
-        />
-      );
-    })}
-  </Chart>
-  )
-}
+      width={dataLength * (itemWidth + itemMargin)}
+      height={chartHeight}
+    >
+      {resizedData.map((week, index) => {
+        const itemHeight = week.weekStocksPurchased;
+        return (
+          <Bar
+            // key={index}
+            x={index * (itemWidth + itemMargin)}
+            y={chartHeight - itemHeight}
+            width={itemWidth}
+            height={itemHeight}
+          />
+        );
+      })}
+    </Chart>
+  );
+};
+
+BarChart.propTypes = {
+  weeklyData: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default BarChart;
