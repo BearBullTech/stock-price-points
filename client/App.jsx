@@ -7,7 +7,10 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      weeklyData: [{}],
+      weeklyData: [
+        //Initial set of data is neccesary to prevent errors.
+        {weekIndex: 28, weekHigh: 395.38, weekLow: 331.4, weekAverage: 363.39, weekStocksPurchased: 991},
+      ],
     };
 
     // this.handleDataQuery
