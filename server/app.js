@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger('dev'));
 
 
-app.get('/data/', (req, res) => {
+app.get('/', (req, res) => {
   database.Company.find({}, 'company weeks', (err, result) => {
     if (err) {
       return console.log('CALLBACK ERROR!');

@@ -1,24 +1,30 @@
 const request = require('supertest');
-const express = require('express');
 const { mongoose } = require('../database/index.js');
-
-const app = express();
+const { app } = require('./app.js');
 
 afterAll(() => {
   mongoose.connection.close();
 });
 
 describe('GET success response', () => {
-  test(
-    'it should respond with 200',
-    async (done) => {
-      await request(app)
-        .get('/data')
-        .then((res) => {
-          expect(res.statusCode).toBe(200);
-          done();
-        });
-    },
-    6000,
-  );
+  it('respond with 200', (done) => {
+    request(app)
+      .get('/')
+      .expect(200, done);
+  });
 });
+
+// describe('GET success response', () => {
+//   test(
+//     'it should respond with 200',
+//     async (done) => {
+//       await request(app)
+//         .get('/')
+//         .then((res) => {
+//           expect(res.statusCode).toBe(200);
+//           done();
+//         });
+//     },
+//     6000,
+//   );
+// });
