@@ -8,21 +8,20 @@ class App extends React.Component {
     super(props);
     this.state = {
       weeklyData: [
-        {// Initial set of data is neccesary to prevent errors.
-          weekIndex: 28,
-          weekHigh: 395.38,
-          weekLow: 331.4,
-          weekAverage: 363.39,
-          weekStocksPurchased: 991,
+        {// Temporary Data to prevent errors.
+          weekIndex: 1,
+          weekHigh: 1,
+          weekLow: 1,
+          weekAverage: 1,
+          weekStocksPurchased: 1,
         },
       ],
     };
 
-    // this.handleDataQuery
     this.componentDidMount = () => {
       $.ajax({
         method: 'GET',
-        url: '/data',
+        url: '/data/company/onecompany',
         success: (output) => {
           console.log(output);
           this.setState({
