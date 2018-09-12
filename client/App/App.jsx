@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import BarChart from './BarChart.jsx';
+import BarChart from '../BarChart/BarChart.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -40,4 +40,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('mainChart'));
