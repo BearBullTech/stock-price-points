@@ -4,14 +4,21 @@ const { mongoose } = require('../database/index.js');
 
 const app = express();
 
-afterAll((() => {
-  mongoose.connection.close()
-})
+afterAll(() => {
+  mongoose.connection.close();
+});
 
 describe('GET success response', () => {
-  it('respond with json', (done) => {
-    request(app)
-      .get('/user')
-      .expect(200, done);
-  });
+  test(
+    'it should response with 200',
+    async (done) => {
+      await request(app)
+        .get('/data')
+        .then((res) => {
+          expect(res.statusCode).toBe(200);
+          done();
+        });
+    },
+    6000,
+  );
 });
