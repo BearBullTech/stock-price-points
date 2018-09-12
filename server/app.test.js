@@ -5,7 +5,7 @@ const { mongoose } = require('../database/index.js');
 const app = express();
 
 afterAll(){
-  mongoose.connection.done()
+  mongoose.connection.close()
 }
 
 describe('GET success response', () => {
