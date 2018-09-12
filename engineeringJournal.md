@@ -23,3 +23,7 @@
     rules : {
       "import/extensions": ["error", "never", { "jsx": "always" }]
     }
+  ## Resolved issue: "'describe' is not defined."
+    "env": {
+      "jest": true
+    }

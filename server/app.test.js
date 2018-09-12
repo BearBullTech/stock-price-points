@@ -10,7 +10,7 @@ afterAll(() => {
 
 describe('GET success response', () => {
   test(
-    'it should response with 200',
+    'it should respond with 200',
     async (done) => {
       await request(app)
         .get('/data')
