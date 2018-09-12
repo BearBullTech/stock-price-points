@@ -1,9 +1,14 @@
 const request = require('supertest');
 const express = require('express');
+const { mongoose } = require('../database/index.js');
 
 const app = express();
 
-describe('GET /data', () => {
+afterAll(){
+  mongoose.connection.done()
+}
+
+describe('GET success response', () => {
   it('respond with json', (done) => {
     request(app)
       .get('/user')
