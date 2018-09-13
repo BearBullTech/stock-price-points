@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Bar from './Bar.jsx';
-import Chart from './Chart.jsx';
+import Bar from '../Bar/Bar.jsx';
+import Chart from '../Chart/Chart.jsx';
+import BallLine from '../BallLine/BallLine.jsx';
 
 
 const BarChart = ({ weeklyData }) => {
@@ -25,6 +26,7 @@ const BarChart = ({ weeklyData }) => {
     ),
   );
 
+  // re-identify week with most stocks purchased after data-resize
   mostStocks = resizedData.reduce((acc, cur) => {
     const { weekStocksPurchased } = cur;
     return weekStocksPurchased > acc ? weekStocksPurchased : acc;
@@ -33,23 +35,24 @@ const BarChart = ({ weeklyData }) => {
   const chartHeight = mostStocks;
 
   return (
-    <Chart
-      width={dataLength * (itemWidth + itemMargin)}
-      height={chartHeight}
-    >
-      {resizedData.map((week, index) => {
-        const itemHeight = week.weekStocksPurchased;
-        return (
-          <Bar
-            // key={index}
-            x={index * (itemWidth + itemMargin)}
-            y={chartHeight - itemHeight}
-            width={itemWidth}
-            height={itemHeight}
-          />
-        );
-      })}
-    </Chart>
+    <div>
+      <Chart
+        width={dataLength * (itemWidth + itemMargin)}
+        height={chartHeight}
+      >
+        {resizedData.map((week, index) => {
+          const itemHeight = week.weekStocksPurchased;
+          return (
+            <Bar
+              x={index * (itemWidth + itemMargin)}
+              y={chartHeight - itemHeight}
+              width={itemWidth}
+              height={itemHeight}
+            />
+          );
+        })}
+      </Chart>
+    </div>
   );
 };
 

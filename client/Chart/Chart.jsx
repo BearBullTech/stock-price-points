@@ -6,8 +6,11 @@ const Chart = ({ children, width, height }) => (
     viewBox={`0 0 ${width} ${height}`}
     width={width}
     height={height}
+    fill="#f45531"
   >
-    {children}
+    <g>
+      {children}
+    </g>
   </svg>
 );
 

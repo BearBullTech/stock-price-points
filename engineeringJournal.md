@@ -19,3 +19,11 @@
   continue @ "Creating a test file": https://medium.com/codeclan/testing-react-with-jest-and-enzyme-20505fec4675
 
 ######## NOTES DURING DEVELOPMENT ##########
+  ## Resolved issue 'Unexpected use of file extension "jsx"' with adding the following rule in .eslintrc:
+    rules : {
+      "import/extensions": ["error", "never", { "jsx": "always" }]
+    }
+  ## Resolved issue: "'describe' is not defined."
+    "env": {
+      "jest": true
+    }

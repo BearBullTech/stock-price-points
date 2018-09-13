@@ -23,4 +23,5 @@ const Company = mongoose.model('Company', companySchema);
 
 module.exports = {
   Company,
+  mongoose,
 };
