@@ -3,7 +3,7 @@ import React from 'react';
 
 const Line = () => { // possible width prop
   return (
-    <line x1="0" y1="12" x2="676" y2="12" stroke="black" />
+    <line x1="0" x2="676" y1="110" y2="110" stroke="black" />
   );
 };
 

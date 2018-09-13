@@ -6,7 +6,7 @@ const Ball = () => {
   return (
     <circle
       cx="189.0508474576271"
-      cy="12"
+      cy="110"
       r="7"
       fill="blue"
     />

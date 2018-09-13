@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Bar from '../Bar/Bar.jsx';
 import Chart from '../Chart/Chart.jsx';
 import BallLine from '../BallLine/BallLine.jsx';
+import CurrentPrice from '../CurrentPrice/CurrentPrice.jsx';
 
 
 const BarChart = ({ weeklyData }) => {
@@ -38,7 +39,7 @@ const BarChart = ({ weeklyData }) => {
     <div>
       <Chart
         width={dataLength * (itemWidth + itemMargin)}
-        height={chartHeight}
+        height={chartHeight + 40}
       >
         {resizedData.map((week, index) => {
           const itemHeight = week.weekStocksPurchased;
@@ -51,6 +52,8 @@ const BarChart = ({ weeklyData }) => {
             />
           );
         })}
+        <BallLine />
+        <CurrentPrice />
       </Chart>
     </div>
   );
