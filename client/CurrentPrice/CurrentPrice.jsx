@@ -3,15 +3,8 @@ import PropTypes from 'prop-types';
 import PriceBall from './PriceBall/PriceBall.jsx';
 import VerticalLine from './VerticalLine/VerticalLine.jsx';
 
-const BallLine = ({ yearlyData, currentPrice, updateCurrentOnLine }) => {
-  const { yearLowest, yearHighest } = yearlyData;
-
-  const newRange = yearHighest - yearLowest;
-  const newNum = currentPrice - yearLowest;
-  const percentage = newNum / newRange;
-  const priceOnTheLine = 676 * percentage;
-
-  console.log(updateCurrentOnLine);
+const BallLine = ({ priceOnTheLine }) => {
+  console.log('price on the line: ', priceOnTheLine);
 
   return (
     <g>
@@ -27,9 +20,7 @@ const BallLine = ({ yearlyData, currentPrice, updateCurrentOnLine }) => {
 
 // propTypes
 BallLine.propTypes = {
-  yearlyData: PropTypes.objectOf(PropTypes.number).isRequired,
-  currentPrice: PropTypes.number.isRequired,
-  updateCurrentOnLine: PropTypes.func.isRequired,
+  priceOnTheLine: PropTypes.number.isRequired,
 };
 
 export default BallLine;

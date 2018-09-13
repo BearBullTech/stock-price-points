@@ -9,10 +9,8 @@ import CurrentPrice from '../CurrentPrice/CurrentPrice.jsx';
 const BarChart = (
   {
     weeklyData,
-    yearlyData,
-    currentPrice,
-    updateCurrentOnLine,
-    updateAverageOnLine,
+    priceOnTheLine,
+    averageOnTheLine,
   },
 ) => {
   // Width of each bar
@@ -67,13 +65,10 @@ const BarChart = (
           );
         })}
         <BallLine
-          yearlyData={yearlyData}
-          updateAverageOnLine={updateAverageOnLine}
+          averageOnTheLine={averageOnTheLine}
         />
         <CurrentPrice
-          yearlyData={yearlyData}
-          currentPrice={currentPrice}
-          updateCurrentOnLine={updateCurrentOnLine}
+          priceOnTheLine={priceOnTheLine}
         />
       </Chart>
     </div>
@@ -82,10 +77,12 @@ const BarChart = (
 
 BarChart.propTypes = {
   weeklyData: PropTypes.arrayOf(PropTypes.object).isRequired,
-  yearlyData: PropTypes.objectOf(PropTypes.number).isRequired,
-  currentPrice: PropTypes.number.isRequired,
-  updateCurrentOnLine: PropTypes.func.isRequired,
-  updateAverageOnLine: PropTypes.func.isRequired,
+  averageOnTheLine: PropTypes.number.isRequired,
+  priceOnTheLine: PropTypes.number.isRequired,
+  // yearlyData: PropTypes.objectOf(PropTypes.number).isRequired,
+  // currentPrice: PropTypes.number.isRequired,
+  // updateCurrentOnLine: PropTypes.func.isRequired,
+  // updateAverageOnLine: PropTypes.func.isRequired,
 };
 
 export default BarChart;

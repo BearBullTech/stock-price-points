@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const PriceBall = ({ priceOnTheLine }) => {
+  const color = '#23CE99';
 
-  // updateCurrentOnLine(priceOnLine);
-
-  console.log('price on the line: ', priceOnTheLine); // setState to priceOnLine as currentPrice
   return (
     <circle
       cx={`${priceOnTheLine}`}
       cy="110"
       r="7"
-      fill="#23CE99"
+      fill={color}
     />
   );
 };

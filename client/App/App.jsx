@@ -62,15 +62,33 @@ class App extends React.Component {
       priceOnLine,
       averageOnLine,
     } = this.state;
+    const { yearAverage, yearLowest, yearHighest } = yearlyData;
+    // Average On The Line Calculations
+
+    const avgPercent = (yearHighest - yearLowest) / yearAverage;
+    const averageOnTheLine = 676 * avgPercent;
+
+    // Current On The Line Calculations
+
+    const newRange = yearHighest - yearLowest;
+    const newNum = currentPrice - yearLowest;
+    const currPercent = newNum / newRange;
+    const priceOnTheLine = 676 * currPercent;
+
+    // UPDATE STATE
+    // this.updateAverageOnLine(averageOnTheLine);
+    // this.setState({
+    //   averageOnLine: averageOnTheLine,
+    // });
+    // this.updateCurrentOnLine(priceOnTheLine);
+
+    //
+
     return (
       <BarChart
         weeklyData={weeklyData}
-        yearlyData={yearlyData}
-        currentPrice={currentPrice}
-        priceOnLine={priceOnLine}
-        averageOnLine={averageOnLine}
-        updateAverageOnLine={this.updateAverageOnLine}
-        updateCurrentOnLine={this.updateCurrentOnLine}
+        priceOnTheLine={priceOnTheLine}
+        averageOnTheLine={averageOnTheLine}
       />
     );
   }
