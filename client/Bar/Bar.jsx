@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Bar = ({
-  x, y, width, height,
+  x, y, width, height, fillColor,
 }) => (
   <rect
     x={x}
     y={y}
     width={width}
     height={height}
+    fill={fillColor}
   />
 );
 
@@ -18,6 +19,7 @@ Bar.propTypes = {
   y: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
+  fillColor: PropTypes.string.isRequired,
 };
 
 export default Bar;

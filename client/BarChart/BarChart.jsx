@@ -43,12 +43,17 @@ const BarChart = ({ weeklyData, yearlyData, currentPrice }) => {
       >
         {resizedData.map((week, index) => {
           const itemHeight = week.weekStocksPurchased;
+          let filler = 'black';
+          if (index % 2 === 0) {
+            filler = 'red';
+          }
           return (
             <Bar
               x={index * (itemWidth + itemMargin)}
               y={chartHeight - itemHeight}
               width={itemWidth}
               height={itemHeight}
+              fillColor={filler}
             />
           );
         })}
