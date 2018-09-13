@@ -1,31 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const PriceBall = ({ yearlyData, currentPrice }) => {
-  // prop that details the 'cx' based on average yearly price.
-  const { yearLowest, yearHighest } = yearlyData;
+const PriceBall = ({ priceOnTheLine }) => {
 
-  const newRange = yearHighest - yearLowest;
-  const newNum = currentPrice - yearLowest;
-  const percentage = newNum / newRange;
-  const priceOnLine = 676 * percentage;
-  console.log('*newNum ', newNum, 'On range of : 0-', newRange);
-  console.log('*percent: ', percentage);
-  console.log('*on line: ', priceOnLine);
+  // updateCurrentOnLine(priceOnLine);
+
+  console.log('price on the line: ', priceOnTheLine); // setState to priceOnLine as currentPrice
   return (
     <circle
-      cx={`${priceOnLine}`}
+      cx={`${priceOnTheLine}`}
       cy="110"
       r="7"
-      fill="red"
+      fill="#23CE99"
     />
   );
 };
 
 // propTypes
 PriceBall.propTypes = {
-  yearlyData: PropTypes.objectOf(PropTypes.number).isRequired,
-  currentPrice: PropTypes.number.isRequired,
+  priceOnTheLine: PropTypes.number.isRequired,
 };
 
 export default PriceBall;

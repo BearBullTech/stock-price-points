@@ -6,7 +6,15 @@ import BallLine from '../BallLine/BallLine.jsx';
 import CurrentPrice from '../CurrentPrice/CurrentPrice.jsx';
 
 
-const BarChart = ({ weeklyData, yearlyData, currentPrice }) => {
+const BarChart = (
+  {
+    weeklyData,
+    yearlyData,
+    currentPrice,
+    updateCurrentOnLine,
+    updateAverageOnLine,
+  },
+) => {
   // Width of each bar
   const itemWidth = 11.46;
   const itemMargin = 11.45;
@@ -43,10 +51,11 @@ const BarChart = ({ weeklyData, yearlyData, currentPrice }) => {
       >
         {resizedData.map((week, index) => {
           const itemHeight = week.weekStocksPurchased;
-          let filler = 'black';
-          if (index % 2 === 0) {
-            filler = 'red';
+          let filler = '#F3F3F3';
+          if (index > 0 && index <= 8) {
+            filler = '#23CE99';
           }
+          console.log(index * (itemWidth + itemMargin));
           return (
             <Bar
               x={index * (itemWidth + itemMargin)}
@@ -59,10 +68,12 @@ const BarChart = ({ weeklyData, yearlyData, currentPrice }) => {
         })}
         <BallLine
           yearlyData={yearlyData}
+          updateAverageOnLine={updateAverageOnLine}
         />
         <CurrentPrice
           yearlyData={yearlyData}
           currentPrice={currentPrice}
+          updateCurrentOnLine={updateCurrentOnLine}
         />
       </Chart>
     </div>
@@ -73,6 +84,8 @@ BarChart.propTypes = {
   weeklyData: PropTypes.arrayOf(PropTypes.object).isRequired,
   yearlyData: PropTypes.objectOf(PropTypes.number).isRequired,
   currentPrice: PropTypes.number.isRequired,
+  updateCurrentOnLine: PropTypes.func.isRequired,
+  updateAverageOnLine: PropTypes.func.isRequired,
 };
 
 export default BarChart;

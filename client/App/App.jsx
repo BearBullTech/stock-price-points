@@ -23,6 +23,8 @@ class App extends React.Component {
         yearAverage: 1,
       },
       currentPrice: 18.5,
+      averageOnLine: 1,
+      priceOnLine: 180,
     };
 
     this.componentDidMount = () => {
@@ -38,15 +40,37 @@ class App extends React.Component {
         },
       });
     };
+
+    this.updateAverageOnLine = (averageOnLine) => {
+      this.setState({
+        averageOnLine,
+      });
+    };
+
+    this.updateCurrentOnLine = (priceOnLine) => {
+      this.setState({
+        priceOnLine,
+      });
+    };
   }
 
   render() {
-    const { weeklyData, yearlyData, currentPrice } = this.state;
+    const {
+      weeklyData,
+      yearlyData,
+      currentPrice,
+      priceOnLine,
+      averageOnLine,
+    } = this.state;
     return (
       <BarChart
         weeklyData={weeklyData}
         yearlyData={yearlyData}
         currentPrice={currentPrice}
+        priceOnLine={priceOnLine}
+        averageOnLine={averageOnLine}
+        updateAverageOnLine={this.updateAverageOnLine}
+        updateCurrentOnLine={this.updateCurrentOnLine}
       />
     );
   }

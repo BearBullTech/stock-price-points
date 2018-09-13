@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Ball = ({ yearlyData }) => {
-  // prop that details the 'cx' based on average yearly price.
-  const { yearAverage, yearLowest, yearHighest } = yearlyData;
-  const percentage = (yearHighest - yearLowest) / yearAverage;
-  const averageOnLine = 676 * percentage;
+const Ball = ({ averageOnTheLine }) => {
+  console.log('avg on the line', averageOnTheLine);
+
   return (
     <circle
-      cx={`${averageOnLine}`}
+      cx={`${averageOnTheLine}`}
       cy="110"
       r="7"
       fill="blue"
@@ -18,7 +16,7 @@ const Ball = ({ yearlyData }) => {
 
 // propTypes
 Ball.propTypes = {
-  yearlyData: PropTypes.objectOf(PropTypes.number).isRequired,
+  averageOnTheLine: PropTypes.number.isRequired,
 };
 
 export default Ball;
