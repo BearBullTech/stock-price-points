@@ -6,7 +6,7 @@ import BallLine from '../BallLine/BallLine.jsx';
 import CurrentPrice from '../CurrentPrice/CurrentPrice.jsx';
 
 
-const BarChart = ({ weeklyData }) => {
+const BarChart = ({ weeklyData, yearlyData, currentPrice }) => {
   // Width of each bar
   const itemWidth = 11.46;
   const itemMargin = 11.45;
@@ -52,8 +52,13 @@ const BarChart = ({ weeklyData }) => {
             />
           );
         })}
-        <BallLine />
-        <CurrentPrice />
+        <BallLine
+          yearlyData={yearlyData}
+        />
+        <CurrentPrice
+          yearlyData={yearlyData}
+          currentPrice={currentPrice}
+        />
       </Chart>
     </div>
   );
@@ -61,6 +66,8 @@ const BarChart = ({ weeklyData }) => {
 
 BarChart.propTypes = {
   weeklyData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  yearlyData: PropTypes.objectOf(PropTypes.number).isRequired,
+  currentPrice: PropTypes.number.isRequired,
 };
 
 export default BarChart;

@@ -16,6 +16,13 @@ class App extends React.Component {
           weekStocksPurchased: 1,
         },
       ],
+      yearlyData: {
+        stocksPurchasedYear: 1,
+        yearHighest: 1,
+        yearLowest: 1,
+        yearAverage: 1,
+      },
+      currentPrice: 18.5,
     };
 
     this.componentDidMount = () => {
@@ -26,6 +33,7 @@ class App extends React.Component {
           console.log(output);
           this.setState({
             weeklyData: output[0].weeks.sort((a, b) => a.weekAverage - b.weekAverage),
+            yearlyData: output[0].yearly,
           });
         },
       });
@@ -33,9 +41,13 @@ class App extends React.Component {
   }
 
   render() {
-    const { weeklyData } = this.state;
+    const { weeklyData, yearlyData, currentPrice } = this.state;
     return (
-      <BarChart weeklyData={weeklyData} />
+      <BarChart
+        weeklyData={weeklyData}
+        yearlyData={yearlyData}
+        currentPrice={currentPrice}
+      />
     );
   }
 }

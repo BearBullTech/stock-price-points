@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger('dev'));
 
 
-app.get('/', (req, res) => {
-  database.Company.find({}, 'company weeks', (err, result) => {
+app.get('/data', (req, res) => {
+  database.Company.find({}, null, (err, result) => {
     if (err) {
       return console.log('CALLBACK ERROR!');
     }
@@ -35,7 +35,7 @@ app.get('/data/company/:company', (req, res) => {
 app.get('/data/id/:id', (req, res) => {
   const { id } = req.params;
 
-  database.Company.find({ _id: id }).find((err, result) => {
+  database.Company.find({ _id: id }, null, (err, result) => {
     if (err) {
       return console.log('CALLBACK ERROR!');
     }
