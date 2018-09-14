@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import BarChart from '../BarChart/BarChart.jsx';
+import '../../public/styles.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,9 +17,16 @@ class App extends React.Component {
           weekStocksPurchased: 1,
         },
       ],
-      currentPrice: 20.50,
+      yearly: {
+        stocksPurchasedYear: 1,
+        yearHighest: 1,
+        yearLowest: 1,
+        yearAverage: 1,
+      },
+      currentPrice: 1,
       averageOnTheLine: 1,
       priceOnTheLine: 1,
+      percentChange: 1,
     };
 
     this.componentDidMount = () => {
@@ -26,10 +34,13 @@ class App extends React.Component {
         method: 'GET',
         url: '/data/company/onecompany',
         success: (output) => {
-          const { currentPrice } = this.state;
-          const { yearly } = output[0];
+          const { yearly, currentPrice } = output[0];
           const { yearAverage, yearLowest, yearHighest } = yearly;
 
+          // percentage Change Helper
+          function percentageChange(valOne, valTwo) {
+            return (((valTwo - valOne) / valOne) * 100);
+          }
           // Number On The Line Calculation
           function percentOfNumOnLine(amount) {
             const newRange = yearHighest - yearLowest;
@@ -39,12 +50,15 @@ class App extends React.Component {
 
           const averageOnTheLine = 676 * percentOfNumOnLine(yearAverage);
           const priceOnTheLine = 676 * percentOfNumOnLine(currentPrice);
-
+          const percentChange = percentageChange(averageOnTheLine, priceOnTheLine);
 
           this.setState({
             weeklyData: output[0].weeks.sort((a, b) => a.weekAverage - b.weekAverage),
+            yearly,
+            currentPrice,
             averageOnTheLine,
             priceOnTheLine,
+            percentChange,
           });
         },
       });
@@ -54,8 +68,10 @@ class App extends React.Component {
   render() {
     const {
       weeklyData,
+      yearly,
       priceOnTheLine,
       averageOnTheLine,
+      percentChange,
     } = this.state;
 
     return (
@@ -63,6 +79,8 @@ class App extends React.Component {
         weeklyData={weeklyData}
         priceOnTheLine={priceOnTheLine}
         averageOnTheLine={averageOnTheLine}
+        percentChange={percentChange}
+        yearly={yearly}
       />
     );
   }

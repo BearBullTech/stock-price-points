@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Bar from '../Bar/Bar.jsx';
-import Chart from '../Chart/Chart.jsx';
+import Bar from './Bar/Bar.jsx';
+import Chart from './Chart/Chart.jsx';
 import BallLine from '../BallLine/BallLine.jsx';
 import CurrentPrice from '../CurrentPrice/CurrentPrice.jsx';
+import YearlyText from '../YearlyText/YearlyText.jsx';
 
 
 const BarChart = (
   {
     weeklyData,
+    yearly,
     priceOnTheLine,
     averageOnTheLine,
+    percentChange,
   },
 ) => {
-  // percentage Change Helper
-  function percentageChange(valOne, valTwo) {
-    return (((valTwo - valOne) / valOne) * 100);
-  }
-
   // Width of each bar
   const itemWidth = 11.46;
   const itemMargin = 11.45;
@@ -50,18 +48,26 @@ const BarChart = (
     <div>
       <Chart
         width={dataLength * (itemWidth + itemMargin)}
-        height={chartHeight + 40}
+        height={chartHeight}
       >
         {resizedData.map((week, index) => {
           const itemHeight = week.weekStocksPurchased;
           const xOnLine = index * (itemWidth + itemMargin);
-          const percentChange = percentageChange(averageOnTheLine, priceOnTheLine);
 
           let filler = '#F3F3F3';
-          console.log('percent change: ', percentChange);
-          if (xOnLine > averageOnTheLine && (xOnLine + 11.45) < priceOnTheLine) {
-            filler = '#23CE99';
-            console.log(xOnLine);
+
+          // Positive Percent Change
+          if (percentChange > 0) {
+            if ((xOnLine) >= (averageOnTheLine - 11) && (xOnLine + 11.45) < priceOnTheLine) {
+              filler = '#23CE99';
+              console.log(xOnLine);
+            }
+          // Negative Percent Change
+          } else if (percentChange < 0) {
+            if ((xOnLine + 11.45) <= (averageOnTheLine - 11) && (xOnLine) > priceOnTheLine) {
+              filler = '#23CE99';
+              console.log(xOnLine);
+            }
           }
           return (
             <Bar
@@ -80,6 +86,9 @@ const BarChart = (
           priceOnTheLine={priceOnTheLine}
         />
       </Chart>
+      <YearlyText
+        yearly={yearly}
+      />
     </div>
   );
 };
@@ -88,6 +97,8 @@ BarChart.propTypes = {
   weeklyData: PropTypes.arrayOf(PropTypes.object).isRequired,
   averageOnTheLine: PropTypes.number.isRequired,
   priceOnTheLine: PropTypes.number.isRequired,
+  percentChange: PropTypes.number.isRequired,
+  yearly: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 
 export default BarChart;

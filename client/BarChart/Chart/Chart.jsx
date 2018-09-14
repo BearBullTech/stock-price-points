@@ -5,7 +5,7 @@ const Chart = ({ children, width, height }) => (
   <svg
     viewBox={`0 0 ${width} ${height}`}
     width={width}
-    height={height}
+    height={height + 60}
   >
     <g>
       {children}

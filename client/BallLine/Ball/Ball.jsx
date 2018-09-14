@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Ball = ({ averageOnTheLine }) => {
-  const fillColor = 'blue'; // temp -- get rid of me
+  const fillColor = 'none'; // temp -- get rid of me
 
   return (
     <circle
