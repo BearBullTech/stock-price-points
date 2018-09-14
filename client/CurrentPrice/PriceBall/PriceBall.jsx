@@ -7,7 +7,7 @@ const PriceBall = ({ priceOnTheLine }) => {
   return (
     <circle
       cx={`${priceOnTheLine}`}
-      cy="110"
+      cy="112"
       r="7"
       fill={color}
     />

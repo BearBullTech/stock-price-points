@@ -13,6 +13,11 @@ const BarChart = (
     averageOnTheLine,
   },
 ) => {
+  // percentage Change Helper
+  function percentageChange(valOne, valTwo) {
+    return (((valTwo - valOne) / valOne) * 100);
+  }
+
   // Width of each bar
   const itemWidth = 11.46;
   const itemMargin = 11.45;
@@ -49,11 +54,15 @@ const BarChart = (
       >
         {resizedData.map((week, index) => {
           const itemHeight = week.weekStocksPurchased;
+          const xOnLine = index * (itemWidth + itemMargin);
+          const percentChange = percentageChange(averageOnTheLine, priceOnTheLine);
+
           let filler = '#F3F3F3';
-          if (index > 0 && index <= 8) {
+          console.log('percent change: ', percentChange);
+          if (xOnLine > averageOnTheLine && (xOnLine + 11.45) < priceOnTheLine) {
             filler = '#23CE99';
+            console.log(xOnLine);
           }
-          console.log(index * (itemWidth + itemMargin));
           return (
             <Bar
               x={index * (itemWidth + itemMargin)}
@@ -79,10 +88,6 @@ BarChart.propTypes = {
   weeklyData: PropTypes.arrayOf(PropTypes.object).isRequired,
   averageOnTheLine: PropTypes.number.isRequired,
   priceOnTheLine: PropTypes.number.isRequired,
-  // yearlyData: PropTypes.objectOf(PropTypes.number).isRequired,
-  // currentPrice: PropTypes.number.isRequired,
-  // updateCurrentOnLine: PropTypes.func.isRequired,
-  // updateAverageOnLine: PropTypes.func.isRequired,
 };
 
 export default BarChart;
