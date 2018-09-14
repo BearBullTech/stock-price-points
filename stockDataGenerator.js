@@ -25,6 +25,7 @@ function stocksPurchased(startingVal, weekAverage) {
 }
 
 let weeklyValues = [];
+let weekAverages = [];
 let totalStocksPurchased = 0;
 function weekValues(startingVal, index) {
   const minusSomePercent = startingVal - (startingVal * getRandomValue(0.03, 0.38));
@@ -43,7 +44,8 @@ function weekValues(startingVal, index) {
     weekStocksPurchased,
   };
 
-  weeklyValues.push(weekObj.weekAverage);
+  weeklyValues.push(weekObj.weekLow, weekObj.weekHigh);
+  weekAverages.push(weekObj.weekAverage);
   totalStocksPurchased += weekStocksPurchased;
   return weekObj;
 }
@@ -58,6 +60,8 @@ function xWeeks(numOfWeeks, avgCompanyValue) {
   return results;
 }
 
+const add = (a, b) => a + b;
+
 function testCompany(x) {
   const results = [];
 
@@ -71,14 +75,15 @@ function testCompany(x) {
         stocksPurchasedYear: totalStocksPurchased,
         yearHighest: Math.max.apply(null, weeklyValues),
         yearLowest: Math.min.apply(null, weeklyValues),
-        yearAverage: parseFloat(((Math.max.apply(null, weeklyValues)
-                        + Math.min.apply(null, weeklyValues)) / 2).toFixed(2)),
+        yearAverage: parseFloat(((weekAverages.reduce(add)) / 30).toFixed(2)),
       },
+      currentPrice: getRandomValue(this.yearly.yearLowest, this.yearly.yearHighest),
 
     };
     results.push(companyObj); //
     // results.push(JSON.stringify(companyObj)); //
     weeklyValues = [];
+    weekAverages = [];
     totalStocksPurchased = 0;
   }
 

@@ -1,11 +1,9 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 
-const Line = () => { // possible width prop
-  return (
-    <line x1="0" y1="12" x2="676" y2="12" stroke="black" />
-  );
-};
+const Line = () => (
+  <line x1="0" x2="676" y1="114" y2="114" stroke="#cbcbcd" fill="#cbcbcd" />
+);
 
 // propTypes
 Line.propTypes = {

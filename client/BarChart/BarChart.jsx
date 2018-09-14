@@ -1,11 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Bar from '../Bar/Bar.jsx';
-import Chart from '../Chart/Chart.jsx';
+import Bar from './Bar/Bar.jsx';
+import Chart from './Chart/Chart.jsx';
 import BallLine from '../BallLine/BallLine.jsx';
+import CurrentPrice from '../CurrentPrice/CurrentPrice.jsx';
+import YearlyText from '../YearlyText/YearlyText.jsx';
 
 
-const BarChart = ({ weeklyData }) => {
+const BarChart = (
+  {
+    weeklyData,
+    yearly,
+    priceOnTheLine,
+    averageOnTheLine,
+    percentChange,
+  },
+) => {
   // Width of each bar
   const itemWidth = 11.46;
   const itemMargin = 11.45;
@@ -42,22 +52,53 @@ const BarChart = ({ weeklyData }) => {
       >
         {resizedData.map((week, index) => {
           const itemHeight = week.weekStocksPurchased;
+          const xOnLine = index * (itemWidth + itemMargin);
+
+          let filler = '#F3F3F3';
+
+          // Positive Percent Change
+          if (percentChange > 0) {
+            if ((xOnLine) >= (averageOnTheLine - 11) && (xOnLine + 11.45) < priceOnTheLine) {
+              filler = '#23CE99';
+              console.log(xOnLine);
+            }
+          // Negative Percent Change
+          } else if (percentChange < 0) {
+            if ((xOnLine + 11.45) <= (averageOnTheLine - 11) && (xOnLine) > priceOnTheLine) {
+              filler = '#23CE99';
+              console.log(xOnLine);
+            }
+          }
           return (
             <Bar
               x={index * (itemWidth + itemMargin)}
               y={chartHeight - itemHeight}
               width={itemWidth}
               height={itemHeight}
+              fillColor={filler}
             />
           );
         })}
+        <BallLine
+          averageOnTheLine={averageOnTheLine}
+        />
+        <CurrentPrice
+          priceOnTheLine={priceOnTheLine}
+        />
       </Chart>
+      <YearlyText
+        yearly={yearly}
+      />
     </div>
   );
 };
 
 BarChart.propTypes = {
   weeklyData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  averageOnTheLine: PropTypes.number.isRequired,
+  priceOnTheLine: PropTypes.number.isRequired,
+  percentChange: PropTypes.number.isRequired,
+  yearly: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 
 export default BarChart;
