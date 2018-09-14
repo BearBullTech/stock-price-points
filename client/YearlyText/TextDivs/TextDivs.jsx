@@ -21,7 +21,9 @@ export const AveragePrice = ({ yearly }) => {
   return (
     <div className="average-text">
       <div>
-        Average Paid Price
+        Average Paid
+        <br />
+        Price
       </div>
       <div>
         {`$${yearAverage}`}
