@@ -31,7 +31,7 @@ class App extends React.Component {
     this.componentDidMount = () => {
       $.ajax({
         method: 'GET',
-        url: '/data/company/onecompany',
+        url: '/data/company/Beer,%20Nader%20and%20Predovic',
         success: (output) => {
           const { yearly, currentPrice } = output[0];
           const { yearAverage, yearLowest, yearHighest } = yearly;
