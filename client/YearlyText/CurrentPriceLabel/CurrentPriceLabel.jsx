@@ -1,14 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// vvvv STYLES vvvv //
-
-// ^^^^ STYLES ^^^^ //
-
 const CurrentPriceLabel = ({ priceOnTheLine, percentChange }) => {
-  const currPriceToTransform = priceOnTheLine - 42.5;
+  const currPriceToTransform = priceOnTheLine - 45;
   const currentPriceContainer = {
-    width: '85px',
+    width: '90px',
     fontSize: '15px',
     transform: `translateX(${currPriceToTransform}px)`, // make this dynamic
   };
@@ -19,7 +15,7 @@ const CurrentPriceLabel = ({ priceOnTheLine, percentChange }) => {
       <div className="currentPriceContainer" style={currentPriceContainer}>
         <p>
           {`${Math.floor(percentChange)}% ${highLowLabel} `}
-          <span className="rightnow">
+          <span className="right-now">
             Right Now
           </span>
         </p>

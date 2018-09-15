@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 const PriceBall = ({ priceOnTheLine }) => {
   const color = '#23CE99';
-
   return (
     <circle
       cx={`${priceOnTheLine}`}

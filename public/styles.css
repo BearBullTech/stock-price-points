@@ -1,12 +1,24 @@
 * {
-  font-family: 'DIN Pro,-apple-system,BlinkMacSystemFont,sans-serif';
+  font-family: din-2014, sans-serif;
+  font-style: normal;
+  font-weight: 600;
   letter-spacing: .25px;
   line-height: 19px;
 }
 
+.main-header {
+  width: 676px;
+}
+
 .label-header {
   width: 676px;
+  color: #23CE99;
   text-align: center;
+}
+
+.right-now {
+  font-size: 12px;
+  font-weight: 400px;
 }
 
 .prices-container {
@@ -18,15 +30,25 @@
 .low-text {
   text-align:left;
   color: #cbcbcd;
-  /* width: 80.8px; */
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: .25px;
+  line-height: 19px;
 }
 
 .average-text {
   color: #171718;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: .25px;
+  line-height: 19px;
 }
 
 .high-text {
   text-align:right;
   color: #cbcbcd;
-  /* width: 78.8px; */
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: .25px;
+  line-height: 19px;
 }

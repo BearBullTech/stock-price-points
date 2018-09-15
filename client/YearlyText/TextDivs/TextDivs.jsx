@@ -30,6 +30,7 @@ export const AveragePrice = ({ yearly, averageOnTheLine }) => {
   const innerAverage = {
     width: '110px',
     textAlign: 'center',
+    fontWeight: 'bold',
     alignContent: 'center',
     transform: `translateX(${valToTransform}px)`,
   };
@@ -38,9 +39,9 @@ export const AveragePrice = ({ yearly, averageOnTheLine }) => {
     <div className="average-text">
       <div className="inner-average" style={innerAverage}>
         <div>
-          Average Paid
+          Average Price
           <br />
-          Price
+          Paid
         </div>
         <div>
           {`$${yearAverage}`}

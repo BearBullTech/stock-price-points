@@ -64,13 +64,11 @@ const BarChart = (
           if (percentChange > 0) {
             if ((xOnLine) >= (averageOnTheLine - 11) && (xOnLine + 11.45) < priceOnTheLine) {
               filler = '#23CE99';
-              console.log(xOnLine);
             }
           // Negative Percent Change
           } else if (percentChange < 0) {
             if ((xOnLine) <= (averageOnTheLine) && (xOnLine) > priceOnTheLine) {
               filler = '#23CE99';
-              console.log(xOnLine);
             }
           }
           return (

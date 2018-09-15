@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import BarChart from '../BarChart/BarChart.jsx';
+import PricesPaidHeader from '../PricesPaidHeader/PricesPaidHeader.jsx';
 import '../../public/styles.css';
 
 class App extends React.Component {
@@ -73,13 +74,16 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <BarChart
-        weeklyData={weeklyData}
-        priceOnTheLine={priceOnTheLine}
-        averageOnTheLine={averageOnTheLine}
-        percentChange={percentChange}
-        yearly={yearly}
-      />
+      <div>
+        <PricesPaidHeader />
+        <BarChart
+          weeklyData={weeklyData}
+          priceOnTheLine={priceOnTheLine}
+          averageOnTheLine={averageOnTheLine}
+          percentChange={percentChange}
+          yearly={yearly}
+        />
+      </div>
     );
   }
 }
