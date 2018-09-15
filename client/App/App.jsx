@@ -23,7 +23,6 @@ class App extends React.Component {
         yearLowest: 1,
         yearAverage: 1,
       },
-      currentPrice: 1,
       averageOnTheLine: 1,
       priceOnTheLine: 1,
       percentChange: 1,
@@ -55,7 +54,6 @@ class App extends React.Component {
           this.setState({
             weeklyData: output[0].weeks.sort((a, b) => a.weekAverage - b.weekAverage),
             yearly,
-            currentPrice,
             averageOnTheLine,
             priceOnTheLine,
             percentChange,

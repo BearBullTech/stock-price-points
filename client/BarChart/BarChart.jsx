@@ -5,7 +5,7 @@ import Chart from './Chart/Chart.jsx';
 import BallLine from '../BallLine/BallLine.jsx';
 import CurrentPrice from '../CurrentPrice/CurrentPrice.jsx';
 import YearlyText from '../YearlyText/YearlyText.jsx';
-
+import CurrentPriceLabel from '../YearlyText/CurrentPriceLabel/CurrentPriceLabel.jsx';
 
 const BarChart = (
   {
@@ -46,6 +46,10 @@ const BarChart = (
 
   return (
     <div>
+      <CurrentPriceLabel
+        percentChange={percentChange}
+        priceOnTheLine={priceOnTheLine}
+      />
       <Chart
         width={dataLength * (itemWidth + itemMargin)}
         height={chartHeight}
@@ -87,6 +91,7 @@ const BarChart = (
         />
       </Chart>
       <YearlyText
+        averageOnTheLine={averageOnTheLine}
         yearly={yearly}
       />
     </div>

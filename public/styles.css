@@ -1,11 +1,18 @@
-.prices-container {
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  width: 676px;
+* {
   font-family: 'DIN Pro,-apple-system,BlinkMacSystemFont,sans-serif';
-  font-size: 13px;
   letter-spacing: .25px;
   line-height: 19px;
+}
+
+.label-header {
+  width: 676px;
+  text-align: center;
+}
+
+.prices-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  width: 676px;
 }
 
 .low-text {
@@ -15,9 +22,7 @@
 }
 
 .average-text {
-  text-align:center;
   color: #171718;
-  /* width: 113.99px; */
 }
 
 .high-text {

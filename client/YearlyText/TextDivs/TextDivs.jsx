@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// vvvv STYLES vvvv //
+
+
+// ^^^^ STYLES ^^^^ //
+
 
 export const LowestPrice = ({ yearly }) => {
   const { yearLowest } = yearly;
@@ -16,17 +21,30 @@ export const LowestPrice = ({ yearly }) => {
   );
 };
 
-export const AveragePrice = ({ yearly }) => {
+export const AveragePrice = ({ yearly, averageOnTheLine }) => {
   const { yearAverage } = yearly;
+
+  const valToTransform = averageOnTheLine - 96.56 - 55;
+  console.log(valToTransform);
+
+  const innerAverage = {
+    width: '110px',
+    textAlign: 'center',
+    alignContent: 'center',
+    transform: `translateX(${valToTransform}px)`,
+  };
+
   return (
     <div className="average-text">
-      <div>
-        Average Paid
-        <br />
-        Price
-      </div>
-      <div>
-        {`$${yearAverage}`}
+      <div className="inner-average" style={innerAverage}>
+        <div>
+          Average Paid
+          <br />
+          Price
+        </div>
+        <div>
+          {`$${yearAverage}`}
+        </div>
       </div>
     </div>
   );
@@ -51,6 +69,7 @@ LowestPrice.propTypes = {
   yearly: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 AveragePrice.propTypes = {
+  averageOnTheLine: PropTypes.number.isRequired,
   yearly: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 HighestPrice.propTypes = {

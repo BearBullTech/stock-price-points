@@ -7,7 +7,7 @@ const BallLine = ({ priceOnTheLine }) => {
   console.log('price on the line: ', priceOnTheLine);
 
   return (
-    <g>
+    <g id="priceOnTheLine">
       <VerticalLine
         priceOnTheLine={priceOnTheLine}
       />

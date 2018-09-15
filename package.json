@@ -10,7 +10,8 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon server/index.js",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "build-watch": "webpack --mode production --watch"
   },
   "jest": {
     "snapshotSerializers": [
