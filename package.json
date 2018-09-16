@@ -19,6 +19,7 @@
     ]
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-core": "^7.0.0-bridge.0",
     "body-parser": "^1.18.3",
     "enzyme": "^3.6.0",
@@ -31,6 +32,7 @@
     "path": "^0.12.7",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
+    "react-axios": "^2.0.1",
     "react-dom": "^16.4.2",
     "react-router": "^4.3.1",
     "react-tooltip": "^3.8.4",

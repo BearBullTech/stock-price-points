@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
+const path = require('path');
 const database = require('../database/index.js');
 
 const app = express();
@@ -10,14 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger('dev'));
 
-
-app.get('/data', (req, res) => {
-  database.Company.find({}, null, (err, result) => {
-    if (err) {
-      return console.log('CALLBACK ERROR!');
-    }
-    return res.json(result);
-  });
+app.get('/:company', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 app.get('/data/company/:company', (req, res) => {

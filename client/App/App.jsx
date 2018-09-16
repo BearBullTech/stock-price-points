@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import axios from 'axios';
 import BarChart from '../BarChart/BarChart.jsx';
 import PricesPaidHeader from '../PricesPaidHeader/PricesPaidHeader.jsx';
 import '../../public/styles.css';
@@ -9,8 +9,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      marketIsOpen: true, // dark theme
-      priceIsUp: true, // green theme, apply to components
+      marketIsOpen: true, // light/dark theme
+      priceIsUp: true, // green/orange theme
       weeklyData: [
         {// Temporary Data to prevent errors.
           weekIndex: 1,
@@ -32,11 +32,10 @@ class App extends React.Component {
     };
 
     this.componentDidMount = () => {
-      $.ajax({
-        method: 'GET',
-        url: '/data/company/Beer,%20Nader%20and%20Predovic',
-        success: (output) => {
-          const { yearly, currentPrice } = output[0];
+      axios.get(`/data/company${window.location.pathname}`)
+        .then((output) => {
+          const { data } = output;
+          const { yearly, currentPrice } = data[0];
           const { yearAverage, yearLowest, yearHighest } = yearly;
 
           // percentage Change Helper
@@ -55,14 +54,13 @@ class App extends React.Component {
           const percentChange = percentageChange(averageOnTheLine, priceOnTheLine);
 
           this.setState({
-            weeklyData: output[0].weeks.sort((a, b) => a.weekAverage - b.weekAverage),
+            weeklyData: data[0].weeks.sort((a, b) => a.weekAverage - b.weekAverage),
             yearly,
             averageOnTheLine,
             priceOnTheLine,
             percentChange,
           });
-        },
-      });
+        });
     };
   }
 
