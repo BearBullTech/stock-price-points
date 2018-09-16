@@ -4,11 +4,13 @@ import Bar from './Bar/Bar.jsx';
 import Chart from './Chart/Chart.jsx';
 import BallLine from '../BallLine/BallLine.jsx';
 import CurrentPrice from '../CurrentPrice/CurrentPrice.jsx';
-import YearlyText from '../YearlyText/YearlyText.jsx';
-import CurrentPriceLabel from '../YearlyText/CurrentPriceLabel/CurrentPriceLabel.jsx';
+import YearlyText from '../TextLabels/YearlyText.jsx';
+import CurrentPriceLabel from '../TextLabels/CurrentPriceLabel/CurrentPriceLabel.jsx';
 
 const BarChart = (
   {
+    marketIsOpen,
+    priceIsUp,
     weeklyData,
     yearly,
     priceOnTheLine,
@@ -43,12 +45,14 @@ const BarChart = (
   }, 0);
 
   const chartHeight = mostStocks;
+  const upDownColor = priceIsUp ? '#23CE99' : '#f45531';
 
   return (
     <div>
       <CurrentPriceLabel
         percentChange={percentChange}
         priceOnTheLine={priceOnTheLine}
+        upDownColor={upDownColor}
       />
       <Chart
         width={dataLength * (itemWidth + itemMargin)}
@@ -58,17 +62,17 @@ const BarChart = (
           const itemHeight = week.weekStocksPurchased;
           const xOnLine = index * (itemWidth + itemMargin);
 
-          let filler = '#F3F3F3';
-
+          let filler = marketIsOpen ? '#F3F3F3' : '#0E0D0D';
+          console.log('color', upDownColor);
           // Positive Percent Change
           if (percentChange > 0) {
             if ((xOnLine) >= (averageOnTheLine - 11) && (xOnLine + 11.45) < priceOnTheLine) {
-              filler = '#23CE99';
+              filler = upDownColor;
             }
           // Negative Percent Change
           } else if (percentChange < 0) {
             if ((xOnLine) <= (averageOnTheLine) && (xOnLine) > priceOnTheLine) {
-              filler = '#23CE99';
+              filler = upDownColor;
             }
           }
           return (
@@ -82,13 +86,16 @@ const BarChart = (
           );
         })}
         <BallLine
+          marketIsOpen={marketIsOpen}
           averageOnTheLine={averageOnTheLine}
         />
         <CurrentPrice
+          upDownColor={upDownColor}
           priceOnTheLine={priceOnTheLine}
         />
       </Chart>
       <YearlyText
+        marketIsOpen={marketIsOpen}
         averageOnTheLine={averageOnTheLine}
         yearly={yearly}
       />
@@ -97,6 +104,8 @@ const BarChart = (
 };
 
 BarChart.propTypes = {
+  marketIsOpen: PropTypes.bool.isRequired,
+  priceIsUp: PropTypes.bool.isRequired,
   weeklyData: PropTypes.arrayOf(PropTypes.object).isRequired,
   averageOnTheLine: PropTypes.number.isRequired,
   priceOnTheLine: PropTypes.number.isRequired,

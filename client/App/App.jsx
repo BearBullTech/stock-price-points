@@ -9,6 +9,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      marketIsOpen: true, // dark theme
+      priceIsUp: true, // green theme, apply to components
       weeklyData: [
         {// Temporary Data to prevent errors.
           weekIndex: 1,
@@ -66,6 +68,8 @@ class App extends React.Component {
 
   render() {
     const {
+      marketIsOpen,
+      priceIsUp,
       weeklyData,
       yearly,
       priceOnTheLine,
@@ -73,10 +77,15 @@ class App extends React.Component {
       percentChange,
     } = this.state;
 
+    const classNames = marketIsOpen ? 'main-div-open' : 'main-div-closed';
     return (
-      <div>
-        <PricesPaidHeader />
+      <div className={classNames}>
+        <PricesPaidHeader
+          marketIsOpen={marketIsOpen}
+        />
         <BarChart
+          marketIsOpen={marketIsOpen}
+          priceIsUp={priceIsUp}
           weeklyData={weeklyData}
           priceOnTheLine={priceOnTheLine}
           averageOnTheLine={averageOnTheLine}

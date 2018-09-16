@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 const Ball = ({ averageOnTheLine }) => {
   // change fill color to visualize Average on the line
   const fillColor = 'none';
-
   return (
     <circle
       cx={`${averageOnTheLine}`}

@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CurrentPriceLabel = ({ priceOnTheLine, percentChange }) => {
+const CurrentPriceLabel = (
+  {
+    priceOnTheLine,
+    percentChange,
+    upDownColor,
+  },
+) => {
   const currPriceToTransform = priceOnTheLine - 45;
   const currentPriceContainer = {
     width: '90px',
     fontSize: '15px',
+    color: upDownColor,
     transform: `translateX(${currPriceToTransform}px)`, // make this dynamic
   };
 
@@ -14,7 +21,7 @@ const CurrentPriceLabel = ({ priceOnTheLine, percentChange }) => {
     <header className="label-header">
       <div className="currentPriceContainer" style={currentPriceContainer}>
         <p>
-          {`${Math.floor(percentChange)}% ${highLowLabel} `}
+          {`${Math.floor(Math.abs(percentChange))}% ${highLowLabel} `}
           <span className="right-now">
             Right Now
           </span>
@@ -28,6 +35,7 @@ const CurrentPriceLabel = ({ priceOnTheLine, percentChange }) => {
 CurrentPriceLabel.propTypes = {
   priceOnTheLine: PropTypes.number.isRequired,
   percentChange: PropTypes.number.isRequired,
+  upDownColor: PropTypes.string.isRequired,
 };
 
 export default CurrentPriceLabel;

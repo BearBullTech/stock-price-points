@@ -1,38 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// vvvv STYLES vvvv //
-
-
-// ^^^^ STYLES ^^^^ //
-
-
-export const LowestPrice = ({ yearly }) => {
+export const LowestPrice = ({ yearly, marketIsOpen }) => {
   const { yearLowest } = yearly;
+  const color = marketIsOpen ? '#cbcbcd' : '#8c8d8d';
+  const lowTextStyle = {
+    textAlign: 'left',
+    color,
+  };
+
   return (
-    <div className="low-text">
+    <div className="low-text" style={lowTextStyle}>
       <div>
         52 Week Low
       </div>
-      <div>
+      <div className="dollar-amount">
         {`$${yearLowest}`}
       </div>
     </div>
   );
 };
 
-export const AveragePrice = ({ yearly, averageOnTheLine }) => {
+export const AveragePrice = ({ yearly, averageOnTheLine, marketIsOpen }) => {
   const { yearAverage } = yearly;
 
   const valToTransform = averageOnTheLine - 96.56 - 55;
-  console.log(valToTransform);
+  const color = marketIsOpen ? '#171718' : '#FFFFFF';
 
   const innerAverage = {
     width: '110px',
-    textAlign: 'center',
-    fontWeight: 'bold',
-    alignContent: 'center',
     transform: `translateX(${valToTransform}px)`,
+    textAlign: 'center',
+    color,
   };
 
   return (
@@ -43,7 +42,7 @@ export const AveragePrice = ({ yearly, averageOnTheLine }) => {
           <br />
           Paid
         </div>
-        <div>
+        <div className="dollar-amount">
           {`$${yearAverage}`}
         </div>
       </div>
@@ -51,14 +50,19 @@ export const AveragePrice = ({ yearly, averageOnTheLine }) => {
   );
 };
 
-export const HighestPrice = ({ yearly }) => {
+export const HighestPrice = ({ yearly, marketIsOpen }) => {
   const { yearHighest } = yearly;
+  const color = marketIsOpen ? '#cbcbcd' : '#8c8d8d';
+  const highTextStyle = {
+    textAlign: 'right',
+    color,
+  };
   return (
-    <div className="high-text">
+    <div className="high-text" style={highTextStyle}>
       <div>
         52 Week High
       </div>
-      <div>
+      <div className="dollar-amount">
         {`$${yearHighest}`}
       </div>
     </div>
@@ -67,12 +71,15 @@ export const HighestPrice = ({ yearly }) => {
 
 // propTypes
 LowestPrice.propTypes = {
+  marketIsOpen: PropTypes.bool.isRequired,
   yearly: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 AveragePrice.propTypes = {
+  marketIsOpen: PropTypes.bool.isRequired,
   averageOnTheLine: PropTypes.number.isRequired,
   yearly: PropTypes.objectOf(PropTypes.number).isRequired,
 };
 HighestPrice.propTypes = {
+  marketIsOpen: PropTypes.bool.isRequired,
   yearly: PropTypes.objectOf(PropTypes.number).isRequired,
 };

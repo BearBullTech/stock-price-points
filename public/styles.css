@@ -1,18 +1,33 @@
 * {
   font-family: din-2014, sans-serif;
   font-style: normal;
-  font-weight: 600;
+  /* font-weight: 600; */
   letter-spacing: .25px;
   line-height: 19px;
+}
+
+.main-div-closed {
+  background-color: #1b1b1d;
+  padding: 30px;
+  margin: 30px;
+}
+
+.main-div-open {
+  background-color: #fff;
+  padding: 30px;
+  margin: 30px;
 }
 
 .main-header {
   width: 676px;
 }
 
+.is-open-header {
+  color: #fff;
+}
+
 .label-header {
   width: 676px;
-  color: #23CE99;
   text-align: center;
 }
 
@@ -25,30 +40,12 @@
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
   width: 676px;
-}
-
-.low-text {
-  text-align:left;
-  color: #cbcbcd;
   font-size: 13px;
-  font-weight: bold;
+  font-weight: 400;
   letter-spacing: .25px;
   line-height: 19px;
 }
 
-.average-text {
-  color: #171718;
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: .25px;
-  line-height: 19px;
-}
-
-.high-text {
-  text-align:right;
-  color: #cbcbcd;
-  font-size: 13px;
-  font-weight: bold;
-  letter-spacing: .25px;
-  line-height: 19px;
+.dollar-amount {
+  font-weight: normal;
 }
