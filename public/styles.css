@@ -1,27 +1,51 @@
-.prices-container {
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  width: 676px;
-  font-family: 'DIN Pro,-apple-system,BlinkMacSystemFont,sans-serif';
-  font-size: 13px;
+* {
+  font-family: din-2014, sans-serif;
+  font-style: normal;
+  /* font-weight: 600; */
   letter-spacing: .25px;
   line-height: 19px;
 }
 
-.low-text {
-  text-align:left;
-  color: #cbcbcd;
-  /* width: 80.8px; */
+.main-div-closed {
+  background-color: #1b1b1d;
+  padding: 30px;
+  margin: 30px;
 }
 
-.average-text {
-  text-align:center;
-  color: #171718;
-  /* width: 113.99px; */
+.main-div-open {
+  background-color: #fff;
+  padding: 30px;
+  margin: 30px;
 }
 
-.high-text {
-  text-align:right;
-  color: #cbcbcd;
-  /* width: 78.8px; */
+.main-header {
+  width: 676px;
+}
+
+.is-open-header {
+  color: #fff;
+}
+
+.label-header {
+  width: 676px;
+  text-align: center;
+}
+
+.right-now {
+  font-size: 12px;
+  font-weight: 400px;
+}
+
+.prices-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  width: 676px;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .25px;
+  line-height: 19px;
+}
+
+.dollar-amount {
+  font-weight: normal;
 }

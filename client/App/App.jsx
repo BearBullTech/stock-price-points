@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
+import axios from 'axios';
 import BarChart from '../BarChart/BarChart.jsx';
+import PricesPaidHeader from '../PricesPaidHeader/PricesPaidHeader.jsx';
 import '../../public/styles.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      marketIsOpen: true, // light/dark theme
+      priceIsUp: true, // green/orange theme
       weeklyData: [
         {// Temporary Data to prevent errors.
           weekIndex: 1,
@@ -23,18 +26,16 @@ class App extends React.Component {
         yearLowest: 1,
         yearAverage: 1,
       },
-      currentPrice: 1,
       averageOnTheLine: 1,
       priceOnTheLine: 1,
       percentChange: 1,
     };
 
     this.componentDidMount = () => {
-      $.ajax({
-        method: 'GET',
-        url: '/data/company/onecompany',
-        success: (output) => {
-          const { yearly, currentPrice } = output[0];
+      axios.get(`/data/company${window.location.pathname}`)
+        .then((output) => {
+          const { data } = output;
+          const { yearly, currentPrice } = data[0];
           const { yearAverage, yearLowest, yearHighest } = yearly;
 
           // percentage Change Helper
@@ -53,20 +54,20 @@ class App extends React.Component {
           const percentChange = percentageChange(averageOnTheLine, priceOnTheLine);
 
           this.setState({
-            weeklyData: output[0].weeks.sort((a, b) => a.weekAverage - b.weekAverage),
+            weeklyData: data[0].weeks.sort((a, b) => a.weekAverage - b.weekAverage),
             yearly,
-            currentPrice,
             averageOnTheLine,
             priceOnTheLine,
             percentChange,
           });
-        },
-      });
+        });
     };
   }
 
   render() {
     const {
+      marketIsOpen,
+      priceIsUp,
       weeklyData,
       yearly,
       priceOnTheLine,
@@ -74,14 +75,22 @@ class App extends React.Component {
       percentChange,
     } = this.state;
 
+    const classNames = marketIsOpen ? 'main-div-open' : 'main-div-closed';
     return (
-      <BarChart
-        weeklyData={weeklyData}
-        priceOnTheLine={priceOnTheLine}
-        averageOnTheLine={averageOnTheLine}
-        percentChange={percentChange}
-        yearly={yearly}
-      />
+      <div className={classNames}>
+        <PricesPaidHeader
+          marketIsOpen={marketIsOpen}
+        />
+        <BarChart
+          marketIsOpen={marketIsOpen}
+          priceIsUp={priceIsUp}
+          weeklyData={weeklyData}
+          priceOnTheLine={priceOnTheLine}
+          averageOnTheLine={averageOnTheLine}
+          percentChange={percentChange}
+          yearly={yearly}
+        />
+      </div>
     );
   }
 }

@@ -3,24 +3,23 @@ import PropTypes from 'prop-types';
 import PriceBall from './PriceBall/PriceBall.jsx';
 import VerticalLine from './VerticalLine/VerticalLine.jsx';
 
-const BallLine = ({ priceOnTheLine }) => {
-  console.log('price on the line: ', priceOnTheLine);
-
-  return (
-    <g>
-      <VerticalLine
-        priceOnTheLine={priceOnTheLine}
-      />
-      <PriceBall
-        priceOnTheLine={priceOnTheLine}
-      />
-    </g>
-  );
-};
+const CurrentPrice = ({ priceOnTheLine, upDownColor }) => (
+  <g id="priceOnTheLine">
+    <VerticalLine
+      upDownColor={upDownColor}
+      priceOnTheLine={priceOnTheLine}
+    />
+    <PriceBall
+      upDownColor={upDownColor}
+      priceOnTheLine={priceOnTheLine}
+    />
+  </g>
+);
 
 // propTypes
-BallLine.propTypes = {
+CurrentPrice.propTypes = {
+  upDownColor: PropTypes.string.isRequired,
   priceOnTheLine: PropTypes.number.isRequired,
 };
 
-export default BallLine;
+export default CurrentPrice;
