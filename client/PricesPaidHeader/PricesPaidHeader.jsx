@@ -5,7 +5,7 @@ const PricesPaidHeader = ({ marketIsOpen }) => {
   const classNames = marketIsOpen ? 'main-header' : 'main-header is-open-header';
   return (
     <div className={classNames}>
-      <h2> Prices Paid on Robinhood</h2>
+      <h2> Price Paid on Robinhood</h2>
       <hr color="#0e0d0d" size="1" />
     </div>
   );

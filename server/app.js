@@ -27,10 +27,10 @@ app.get('/data/company/:company', (req, res) => {
   });
 });
 
-app.get('/data/id/:id', (req, res) => {
-  const { id } = req.params;
-
-  database.Company.find({ _id: id }, null, (err, result) => {
+app.get('/data/companies', (req, res) => {
+  // const { id } = req.params;
+  // database.Company.find({ _id: id }, null, (err, result) => {
+  database.Company.find({}, null, (err, result) => {
     if (err) {
       return console.log('CALLBACK ERROR!');
     }
