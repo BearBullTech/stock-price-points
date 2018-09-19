@@ -13,7 +13,7 @@ const CurrentPriceLabel = (
     width: '90px',
     fontSize: '15px',
     color: upDownColor,
-    transform: `translateX(${currPriceToTransform}px)`, // make this dynamic
+    transform: `translateX(${currPriceToTransform}px)`,
   };
 
   const highLowLabel = percentChange > 0 ? 'Higher' : 'Lower';

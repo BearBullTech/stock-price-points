@@ -31,6 +31,7 @@ export const AveragePrice = ({ yearly, averageOnTheLine, marketIsOpen }) => {
     width: '110px',
     transform: `translateX(${valToTransform}px)`,
     textAlign: 'center',
+    fontWeight: '600',
     color,
   };
 

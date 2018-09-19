@@ -8,12 +8,14 @@
 
 .main-div-closed {
   background-color: #1b1b1d;
+  width: 682px;
   padding: 30px;
   margin: 30px;
 }
 
 .main-div-open {
   background-color: #fff;
+  width: 682px;
   padding: 30px;
   margin: 30px;
 }

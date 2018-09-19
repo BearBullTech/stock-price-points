@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import moment from 'moment';
 import BarChart from '../BarChart/BarChart.jsx';
 import PricesPaidHeader from '../PricesPaidHeader/PricesPaidHeader.jsx';
 import '../../public/styles.css';
@@ -9,8 +10,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      marketIsOpen: true, // light/dark theme
-      priceIsUp: true, // green/orange theme
+      marketIsOpen: false, // light/dark background styling
+      priceIsUp: false, // green/orange component styling
       weeklyData: [
         {// Temporary Data to prevent errors.
           weekIndex: 1,
@@ -32,26 +33,39 @@ class App extends React.Component {
     };
 
     this.componentDidMount = () => {
+      this.getDataSetInitialState();
+    };
+
+    this.getDataSetInitialState = () => {
       axios.get(`/data/company${window.location.pathname}`)
         .then((output) => {
           const { data } = output;
           const { yearly, currentPrice } = data[0];
           const { yearAverage, yearLowest, yearHighest } = yearly;
-
+          console.log(currentPrice);
           // percentage Change Helper
           function percentageChange(valOne, valTwo) {
             return (((valTwo - valOne) / valOne) * 100);
           }
-          // Number On The Line Calculation
+          // // Number On The Line Calculation
           function percentOfNumOnLine(amount) {
             const newRange = yearHighest - yearLowest;
             const newNum = amount - yearLowest;
             return (newNum / newRange);
           }
 
+          const time = moment();
+          const isOpen = moment('9:00', 'hh:mm');
+          const isClosed = moment('15:00', 'hh:mm');
+
+          const marketIsOpen = !(time.isBetween(isOpen, isClosed));
+
+
           const averageOnTheLine = 676 * percentOfNumOnLine(yearAverage);
-          const priceOnTheLine = 676 * percentOfNumOnLine(currentPrice);
-          const percentChange = percentageChange(averageOnTheLine, priceOnTheLine);
+          const priceOnTheLine = 676 * percentOfNumOnLine(currentPrice[0]);
+          const percentChange = percentageChange(yearAverage, currentPrice[0]);
+
+          this.reloadStateData(currentPrice, yearAverage, yearLowest, yearHighest);
 
           this.setState({
             weeklyData: data[0].weeks.sort((a, b) => a.weekAverage - b.weekAverage),
@@ -59,8 +73,48 @@ class App extends React.Component {
             averageOnTheLine,
             priceOnTheLine,
             percentChange,
+            marketIsOpen,
           });
         });
+    };
+
+    this.reloadStateData = (priceArray, yearAverage, yearLowest, yearHighest) => {
+      const appScope = this;
+
+      function percentageChange(valOne, valTwo) {
+        return (((valTwo - valOne) / valOne) * 100);
+      }
+      // Number On The Line Calculation
+      function percentOfNumOnLine(amount) {
+        const newRange = yearHighest - yearLowest;
+        const newNum = amount - yearLowest;
+        return (newNum / newRange);
+      }
+
+      function theLoop(i) {
+        setTimeout(() => {
+          const time = moment();
+          const isOpen = moment('9:00', 'hh:mm');
+          const isClosed = moment('15:00', 'hh:mm');
+
+          const marketIsOpen = (time.isBetween(isOpen, isClosed));
+
+          const priceOnTheLine = 676 * percentOfNumOnLine(priceArray[i]);
+          const percentChange = percentageChange(yearAverage, priceArray[i]);
+
+          const priceIsUp = (percentChange > 0);
+          appScope.setState({
+            priceOnTheLine,
+            percentChange,
+            marketIsOpen,
+            priceIsUp,
+          });
+          if (++i) {
+            theLoop(i);
+          }
+        }, 30000);
+      }
+      theLoop(0);
     };
   }
 

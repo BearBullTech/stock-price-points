@@ -14,6 +14,8 @@ module.exports = {
   },
   rules: {
     "no-console": 0,
-    "import/extensions": ["error", "never", { "jsx": "always" }]
+    "import/extensions": ["error", "never", { "jsx": "always" }],
+    'no-plusplus': 'off',
+    "no-param-reassign": 0,
   },
 };
