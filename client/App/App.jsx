@@ -58,7 +58,7 @@ class App extends React.Component {
           const isOpen = moment('9:00', 'hh:mm');
           const isClosed = moment('15:00', 'hh:mm');
 
-          const marketIsOpen = !(time.isBetween(isOpen, isClosed));
+          const marketIsOpen = (time.isBetween(isOpen, isClosed));
 
 
           const averageOnTheLine = 676 * percentOfNumOnLine(yearAverage);
@@ -131,7 +131,7 @@ class App extends React.Component {
 
     const classNames = marketIsOpen ? 'main-div-open' : 'main-div-closed';
     return (
-      <div className={classNames}>
+      <div className={classNames} id="stock-price-points">
         <PricesPaidHeader
           marketIsOpen={marketIsOpen}
         />
