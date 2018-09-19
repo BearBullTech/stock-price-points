@@ -112,7 +112,7 @@ class App extends React.Component {
           if (++i) {
             theLoop(i);
           }
-        }, 30000);
+        }, 3000);
       }
       theLoop(0);
     };
